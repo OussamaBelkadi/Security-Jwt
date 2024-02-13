@@ -39,9 +39,12 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+            - run: echo "secret_key=os" >> $GITHUB_ENV
             
             # Run a single cammand
             - run: echo "Add other actions to build 2 ${{ env.testInStep }}"         
+
+            - run: echo "${{ env.scret_key}}"  
 
         env: 
           testInStep: value 2
