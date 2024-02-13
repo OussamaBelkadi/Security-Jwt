@@ -1,1 +1,47 @@
+name: A Basic Workflow 
+
+# Controls when the Workflow will run 
+# An event is a specific activity in a repository that triggers a workflow run.
+on: 
+    push: 
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+# Job is a set of steps in a workflow that executes on the same runner. Each step is either a script that will be executed or an action that will run. 
+jobs:
+
+    # the workflow contains a single job called "build"
+    build-app:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+
+        steps:
+            # checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
+            - uses: actions/checkout@v3
+
+            # Run a single cammand
+
+
+            - run: echo Add other actions to build
+
+    build-api:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+
+        steps:
+            
+            # Run a single cammand
+            - run: echo "Add other actions to build 2"
+        
+    build-db:
+        needs: build-app
+        runs-on: windows-latest
+        steps: 
+            - run: echo "hallo Oussama"
+    package:
+        needs: [build-app, build-db]
+        runs-on: macos-latest  
+        steps: 
+            - run: echo "hallo Team"
+
 
