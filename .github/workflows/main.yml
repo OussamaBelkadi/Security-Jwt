@@ -38,10 +38,10 @@ jobs:
         steps:
             
             # Run a single cammand
-            - run: echo "Add other actions to build 2 {{ env.testInStep }}"
-            
-            env: 
-                testInStep: value 2
+            - run: echo "Add other actions to build 2 ${{ env.testInStep }}"         
+
+        env: 
+          testInStep: value 2
         
     build-db:
         needs: build-app
