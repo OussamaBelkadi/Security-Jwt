@@ -29,7 +29,10 @@ jobs:
             # Run a single cammand
 
 
-            - run: echo Add other actions to build $Fist_Day
+            # Run a single cammand
+            - run: echo "Add other actions to build 2 ${{ env.testInStep }}"         
+
+            - run: echo "${{ env.scret_key}}"  
 
     build-api:
         # The type of runner that the job will run on
