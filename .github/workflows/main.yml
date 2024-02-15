@@ -3,17 +3,19 @@ name: A Basic Workflow
 # Controls when the Workflow will run 
 # An event is a specific activity in a repository that triggers a workflow run.
 on: 
-    push: 
-        branches: [ "main" ]
-    pull_request:
-        branches: [ "main" ]
+   workflow_dispatch:
 # the environement variable
 env:
     To_day: is 13/09
     testenvIntopWorkFlow: in Workflow arrea
 # Job is a set of steps in a workflow that executes on the same runner. Each step is either a script that will be executed or an action that will run. 
 jobs:
-   
+    ubuntu-environment-variables:
+        runs-on: ubuntu-latest
+
+        steps:
+            - run: env
+
     # the workflow contains a single job called "build"
     build-app:
         # The type of runner that the job will run on
@@ -27,10 +29,9 @@ jobs:
             - uses: actions/checkout@v3
 
             # Run a single cammand
-
-
+            - run: echo "single=test" >> $GITHUB_ENV
             # Run a single cammand
-            - run: echo "Add other actions to build 2 ${{ env.testInStep }}"         
+            - run: echo "Add other actions to build 2 ${{ env.testInStep }}  ${{ env.single }}"         
 
             - run: echo "${{ env.scret_key}}"  
 
